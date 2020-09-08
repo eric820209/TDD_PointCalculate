@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Microsoft.Extensions.DependencyInjection;
+using System;
+using TDD_PointCalculate.EF;
 
 namespace TDD_PointCalculate
 {
@@ -6,7 +8,16 @@ namespace TDD_PointCalculate
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            #region build container
+            var services = new ServiceCollection()
+            .AddDbContext<PointContext>()
+
+            .BuildServiceProvider();
+            #endregion
+
+
+
+
         }
     }
 }
