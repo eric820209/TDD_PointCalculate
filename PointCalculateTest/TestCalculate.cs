@@ -55,7 +55,7 @@ namespace PointCalculator_Test
             var actual = _pointPiorityQueue.Calculate(points);
 
             ///Assert
-            var expect = points.OrderBy(x => x.TransactionDateTime);
+            var expect = points.OrderBy(x => x.ExprieDate);
 
             Assert.AreEqual(JsonSerializer.Serialize(expect), JsonSerializer.Serialize(actual));
         }
