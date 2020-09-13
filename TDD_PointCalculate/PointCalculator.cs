@@ -9,12 +9,25 @@ namespace TDD_PointCalculate
 {
     public class PointCalculator : IPointCalculator
     {
-        private IEnumerable<PointTransactionDetail> PointsInQueue;
-        //使用piority queue的觀念，確保分數進出、消費時，不會用到過期的分數或是到期日較晚的分數(分數快到期的要先用)
-        public List<PointModel> Calculate(IEnumerable<PointTransactionDetail> transactions)
+        PointPiorityQueue _pointPiorityQueue;
+        public PointCalculator(PointPiorityQueue pointPiorityQueue)
         {
+            _pointPiorityQueue = pointPiorityQueue;
+        }
+        public List<PointModel> GetFinalPoints(IEnumerable<PointTransactionDetail> pointTransactionDetails)
+        {
+            var calculatedPointTransactionDetails =_pointPiorityQueue.Calculate(pointTransactionDetails);
 
-            return null;
+            var finalPoints = calculatedPointTransactionDetails.Select(x => new PointModel
+            {
+                Point = x.Point.Value,
+                Activity = new ActivityModel { Id = x.Activity == null ? Guid.Empty : x.Activity.Id, Name = x.Activity == null ? "空活動" : x.Activity.Name },
+                ExpireDate = x.ExprieDate.Value,
+                PointType = new PointTypeModel { Id = x.PointTransaction.PointTypeId.Value, Name = x.PointTransaction.PointType.Name },
+                TypeId = x.PointTransaction.TypeId.Value
+            }).ToList();
+
+            return finalPoints;
         }
 
 

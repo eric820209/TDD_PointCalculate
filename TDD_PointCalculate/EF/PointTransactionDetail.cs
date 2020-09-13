@@ -61,5 +61,6 @@ namespace TDD_PointCalculate.EF
 
         public virtual Activity Activity { get; set; }
         public virtual PointTransaction PointTransaction { get; set; }
+
     }
 }

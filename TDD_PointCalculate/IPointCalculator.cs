@@ -8,6 +8,6 @@ namespace TDD_PointCalculate
 {
     interface IPointCalculator
     {
-        List<PointModel> Calculate(IEnumerable<PointTransactionDetail> transactions);
+        List<PointModel> GetFinalPoints(IEnumerable<PointTransactionDetail> pointTransactionDetails);
     }
 }
