@@ -28,7 +28,7 @@ namespace TDD_PointCalculate
                 }
                 else
                 {
-
+                    pointsInQueue.Add(transaction);
                 }
             }
             return pointsInQueue;
