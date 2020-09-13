@@ -20,5 +20,10 @@ namespace TDD_PointCalculate.EF
 
 
         DbSet<PointTransaction> PointTransaction { get; set; }
+        DbSet<PointTransactionDetail> PointTransactionDetail { get; set; }
+        DbSet<PointType> PointType { get; set; }
+        DbSet<Activity> Activity { get; set; }
+
+
     }
 }

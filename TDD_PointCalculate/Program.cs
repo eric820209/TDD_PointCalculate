@@ -11,11 +11,11 @@ namespace TDD_PointCalculate
             #region build container
             var services = new ServiceCollection()
             .AddDbContext<PointContext>()
-
+            .AddTransient<IPointCalculator, PointCalculator>()
             .BuildServiceProvider();
             #endregion
 
-
+            
 
 
         }
