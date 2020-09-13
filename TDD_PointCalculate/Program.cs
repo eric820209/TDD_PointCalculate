@@ -15,7 +15,7 @@ namespace TDD_PointCalculate
             .BuildServiceProvider();
             #endregion
 
-            
+
 
 
         }

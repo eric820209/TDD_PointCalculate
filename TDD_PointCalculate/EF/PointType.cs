@@ -4,7 +4,7 @@ using System.Text;
 
 namespace TDD_PointCalculate.EF
 {
-    class PointType
+    public class PointType
     {
         public Guid Id { get; set; }
         public int SqlId { get; set; }

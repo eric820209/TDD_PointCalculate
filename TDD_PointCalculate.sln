@@ -3,9 +3,12 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30225.117
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TDD_PointCalculate", "TDD_PointCalculate\TDD_PointCalculate.csproj", "{29FC0841-2654-4D56-97CA-1785E56F87EB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TDD_PointCalculate", "TDD_PointCalculate\TDD_PointCalculate.csproj", "{29FC0841-2654-4D56-97CA-1785E56F87EB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PointCalculateTest", "PointCalculateTest\PointCalculateTest.csproj", "{42D09A1D-6CDC-4679-A164-F9A4379B3F2C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PointCalculator_Test", "PointCalculateTest\PointCalculator_Test.csproj", "{42D09A1D-6CDC-4679-A164-F9A4379B3F2C}"
+	ProjectSection(ProjectDependencies) = postProject
+		{29FC0841-2654-4D56-97CA-1785E56F87EB} = {29FC0841-2654-4D56-97CA-1785E56F87EB}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

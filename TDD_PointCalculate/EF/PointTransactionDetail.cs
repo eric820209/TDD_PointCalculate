@@ -6,7 +6,7 @@ using System.Text;
 
 namespace TDD_PointCalculate.EF
 {
-    class PointTransactionDetail
+    public class PointTransactionDetail
     {
         [Key]
         public long SqlId { get; set; }
