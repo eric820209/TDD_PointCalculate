@@ -20,18 +20,39 @@ namespace TDD_PointCalculate
         /// <returns></returns>
         public List<PointTransactionDetail> Calculate(IEnumerable<PointTransactionDetail> pointTransactionDetails)
         {
-            foreach (var transaction in pointTransactionDetails)
+            foreach (var point in pointTransactionDetails)
             {
                 if (pointsInQueue.Count == 0)
                 {
-                    pointsInQueue.Add(transaction);
+                    pointsInQueue.Add(point);
                 }
                 else
                 {
-                    pointsInQueue.Add(transaction);
+                    AccumulatePoint(point);
                 }
             }
             return pointsInQueue;
+        }
+
+
+
+        private void AccumulatePoint(PointTransactionDetail pointTransactionDetail)
+        {
+            bool isAdd = false;
+            for (int i = 0; i < pointsInQueue.Count; i++)
+            {
+                //逐一比較到期日，從最小到最大，若比較的對象>要插入的，則插入
+                if (pointsInQueue[i].ExprieDate > pointTransactionDetail.ExprieDate)
+                {
+                    pointsInQueue.Insert(i,pointTransactionDetail);
+                    isAdd = true;
+                    break;
+                }
+            }
+            if(!isAdd)
+            {
+                pointsInQueue.Add(pointTransactionDetail);
+            }
         }
     }
 }

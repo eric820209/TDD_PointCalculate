@@ -22,6 +22,16 @@ namespace PointCalculator_Test.TestCaseSource
             _modelBuilder.CreateTransactionDetail(10,DateTime.Parse("2020/02/09"),DateTime.Parse("2020/02/20")),
             _modelBuilder.CreateTransactionDetail(10.5M,DateTime.Parse("2020/02/09"),DateTime.Parse("2020/03/20")),
             };
+
+
+
+            yield return new List<PointTransactionDetail>
+            {
+            _modelBuilder.CreateTransactionDetail(10,DateTime.Parse("2020/02/09"),DateTime.Parse("2020/03/20")),
+            _modelBuilder.CreateTransactionDetail(10,DateTime.Parse("2020/02/09"),DateTime.Parse("2020/02/20")),
+            _modelBuilder.CreateTransactionDetail(10,DateTime.Parse("2020/02/09"),DateTime.Parse("2020/02/25")),
+            _modelBuilder.CreateTransactionDetail(10,DateTime.Parse("2020/02/09"),DateTime.Parse("2020/03/18")),
+            };
         }
     }
 }
