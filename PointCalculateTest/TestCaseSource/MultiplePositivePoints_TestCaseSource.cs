@@ -6,7 +6,7 @@ using TDD_PointCalculate.EF;
 
 namespace PointCalculator_Test.TestCaseSource
 {
-    class MultiplePositivePoints_TestCaseSource : IEnumerable
+     class MultiplePositivePoints_TestCaseSource : IEnumerable
     {
         private ModelBuilder _modelBuilder;
         public MultiplePositivePoints_TestCaseSource()
@@ -17,6 +17,7 @@ namespace PointCalculator_Test.TestCaseSource
 
         public IEnumerator GetEnumerator()
         {
+            //多個正數
             yield return new List<PointTransactionDetail>
             {
             _modelBuilder.CreateTransactionDetail(10,DateTime.Parse("2020/02/09"),DateTime.Parse("2020/02/20")),
@@ -24,7 +25,7 @@ namespace PointCalculator_Test.TestCaseSource
             };
 
 
-
+            //多個正數需要排序
             yield return new List<PointTransactionDetail>
             {
             _modelBuilder.CreateTransactionDetail(10,DateTime.Parse("2020/02/09"),DateTime.Parse("2020/03/20")),

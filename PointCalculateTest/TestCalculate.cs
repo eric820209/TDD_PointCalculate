@@ -61,6 +61,21 @@ namespace PointCalculator_Test
         }
 
 
+        [Test]
+        [TestCaseSource(typeof(MultipleNegativePoints_TestCaseSource))]
+        public void Calculate_MultipleNegativeRecord_MergeBecomeOneNegativePoint(List<PointTransactionDetail> points)
+        {
+            ///Arrange
+            // In  MultiplePositivePoints_TestCaseSource class
+
+            ///Action
+            var actual = _pointPiorityQueue.Calculate(points);
+
+            ///Assert
+            var expect = points.OrderBy(x => x.ExprieDate);
+
+            Assert.AreEqual(JsonSerializer.Serialize(expect), JsonSerializer.Serialize(actual));
+        }
 
     }
 }
