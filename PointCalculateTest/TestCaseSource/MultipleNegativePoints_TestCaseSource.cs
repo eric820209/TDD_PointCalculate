@@ -15,16 +15,19 @@ namespace PointCalculator_Test.TestCaseSource
         }
         public IEnumerator GetEnumerator()
         {
-            yield return new List<PointTransactionDetail>
+            //多個負數
+            yield return new TestCaseExpectAndActual
             {
-            _modelBuilder.CreateTransactionDetail(-10,DateTime.Parse("2020/02/09")),
-            _modelBuilder.CreateTransactionDetail(-10.5M,DateTime.Parse("2020/02/09")),
-            };
-
-            yield return new List<PointTransactionDetail>
-            {
-            _modelBuilder.CreateTransactionDetail(-10,DateTime.Parse("2020/02/09"),DateTime.Parse("2020/05/02")),
-            _modelBuilder.CreateTransactionDetail(-10.5M,DateTime.Parse("2020/02/09")),
+                funcInput = new List<PointTransactionDetail>
+                {
+                 _modelBuilder.CreateTransactionDetail(-10,DateTime.Parse("2020/02/09")),
+                 _modelBuilder.CreateTransactionDetail(-10.5M,DateTime.Parse("2020/02/09")),
+                },
+                expectFuncOutput = new List<PointTransactionDetail>
+                {
+                 _modelBuilder.CreateTransactionDetail(-10,DateTime.Parse("2020/02/09")),
+                 _modelBuilder.CreateTransactionDetail(-10.5M,DateTime.Parse("2020/02/09")),
+                }
             };
         }
     }

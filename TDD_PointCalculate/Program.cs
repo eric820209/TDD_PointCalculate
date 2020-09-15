@@ -12,6 +12,7 @@ namespace TDD_PointCalculate
             var services = new ServiceCollection()
             .AddDbContext<PointContext>()
             .AddTransient<IPointCalculator, PointCalculator>()
+            .AddTransient<IDateTimeService,DateTimeService>()
             .BuildServiceProvider();
             #endregion
 

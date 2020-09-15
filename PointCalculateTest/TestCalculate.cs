@@ -1,3 +1,4 @@
+using Moq;
 using NUnit.Framework;
 using PointCalculator_Test.TestCaseSource;
 using System;
@@ -17,7 +18,10 @@ namespace PointCalculator_Test
         [SetUp]
         public void Setup()
         {
-            _pointPiorityQueue = new PointPiorityQueue();
+            Mock<IDateTimeService> mock_DateTimeService = new Mock<IDateTimeService>();
+            mock_DateTimeService.Setup(x => x.GetDate()).Returns(DateTime.Parse("2020/03/12"));
+
+            _pointPiorityQueue = new PointPiorityQueue(mock_DateTimeService.Object);
             _modelBuilder = new ModelBuilder();
         }
 
@@ -46,16 +50,15 @@ namespace PointCalculator_Test
 
         [Test]
         [TestCaseSource(typeof(MultiplePositivePoints_TestCaseSource))]
-        public void Calculate_MultiplePositiveRecord_OrderByExpireDate(List<PointTransactionDetail> points)
+        public void Calculate_MultiplePositiveRecord_OrderByExpireDate(TestCaseExpectAndActual caseDetail )
         {
             ///Arrange
-            // In  MultiplePositivePoints_TestCaseSource class
 
             ///Action
-            var actual = _pointPiorityQueue.Calculate(points);
+            var actual = _pointPiorityQueue.Calculate(caseDetail.funcInput);
 
             ///Assert
-            var expect = points.OrderBy(x => x.ExprieDate);
+            var expect = caseDetail.expectFuncOutput;
 
             Assert.AreEqual(JsonSerializer.Serialize(expect), JsonSerializer.Serialize(actual));
         }
@@ -63,19 +66,31 @@ namespace PointCalculator_Test
 
         [Test]
         [TestCaseSource(typeof(MultipleNegativePoints_TestCaseSource))]
-        public void Calculate_MultipleNegativeRecord_MergeBecomeOneNegativePoint(List<PointTransactionDetail> points)
+        public void Calculate_MultipleNegativeRecord_MergeBecomeOneNegativePoint(TestCaseExpectAndActual caseDetail)
         {
             ///Arrange
-            // In  MultiplePositivePoints_TestCaseSource class
 
             ///Action
-            var actual = _pointPiorityQueue.Calculate(points);
+            var actual = _pointPiorityQueue.Calculate(caseDetail.funcInput);
 
             ///Assert
-            var expect = points.OrderBy(x => x.ExprieDate);
+            var expect = caseDetail.expectFuncOutput;
 
             Assert.AreEqual(JsonSerializer.Serialize(expect), JsonSerializer.Serialize(actual));
         }
+        [Test]
+        [TestCaseSource(typeof(MixingPositiveNegative_TestCaseSource))]
+        public void Calculate_MixingPositiveNegative_OffSet(TestCaseExpectAndActual caseDetail)
+        {
+            ///Arrange
 
+            ///Action
+            var actual = _pointPiorityQueue.Calculate(caseDetail.funcInput);
+
+            ///Assert
+            var expect = caseDetail.expectFuncOutput;
+
+            Assert.AreEqual(JsonSerializer.Serialize(expect), JsonSerializer.Serialize(actual));
+        }
     }
 }
