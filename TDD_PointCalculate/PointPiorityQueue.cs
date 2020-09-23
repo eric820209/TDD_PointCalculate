@@ -22,7 +22,13 @@ namespace TDD_PointCalculate
         /// <returns></returns>
         public List<PointTransactionDetail> Calculate(IEnumerable<PointTransactionDetail> pointTransactionDetails)
         {
-            pointTransactionDetails = pointTransactionDetails.Where(x => x.TransactionDateTime < _dateTimeService.GetDate());
+            var theEndingDate=_dateTimeService.GetDate();
+            if (theEndingDate == null || theEndingDate == default(DateTime))
+            {
+                throw new Exception("結算分數日期為空值");
+            }
+
+            pointTransactionDetails = pointTransactionDetails.Where(x => x.TransactionDateTime <= theEndingDate).OrderBy(x=>x.TransactionDateTime);
             foreach (var currentPoint in pointTransactionDetails)
             {
                 if (_pointsInQueue.Count == 0)
@@ -53,12 +59,16 @@ namespace TDD_PointCalculate
             bool isAdd = false;
             for (int i = 0; i < _pointsInQueue.Count; i++)
             {
-                //逐一比較到期日，從最小到最大，若比較的對象>要插入的，則插入
+                //比較到期日，新資料的到期日較早，則放前面
                 if (_pointsInQueue[i].ExprieDate > pointTransactionDetail.ExprieDate)
                 {
                     _pointsInQueue.Insert(i, pointTransactionDetail);
                     isAdd = true;
                     break;
+                }//到期日同一天
+                else if (_pointsInQueue[i].ExprieDate > pointTransactionDetail.ExprieDate && _pointsInQueue[i].CreateDateTime > pointTransactionDetail.CreateDateTime)
+                { 
+                
                 }
             }
             if (!isAdd)
