@@ -15,16 +15,17 @@ namespace PointCalculator_Test
         /// <param name="transactionDate">此分數交易日期</param>
         /// <param name="expireDate">分數到期日</param>
         /// <returns></returns>
-        public PointTransactionDetail CreateTransactionDetail(decimal point, DateTime? transactionDate = null,DateTime? expireDate= null)
+
+        public PointTransactionDetail CreatePointDetail(decimal point, DateTime? transactionDate = null, DateTime? expireDate = null)
         {
             PointTransactionDetail transactionDetail = new PointTransactionDetail();
             transactionDetail.Point = point;
-            
-            if( transactionDate != null) 
-                transactionDetail.TransactionDateTime=transactionDate.Value ;
+
+            if (transactionDate != null)
+                transactionDetail.TransactionDateTime = transactionDate.Value;
             if (expireDate != null)
                 transactionDetail.ExprieDate = expireDate.Value;
-            
+
             return transactionDetail;
         }
         /// <summary>
