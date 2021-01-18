@@ -13,13 +13,6 @@ namespace PointCalculator_Test
 {
     public class Tests
     {
-        private ModelBuilder _modelBuilder;
-        [SetUp]
-        public void Setup()
-        {
-            _modelBuilder = new ModelBuilder();
-        }
-
         [Test]
         [TestCaseSource(typeof(MultiplePositivePoints_TestCaseSource))]
         public void Calculate_MultiplePositiveRecord_OrderByExpireDate(TestCaseExpectAndActualModel caseDetail )
